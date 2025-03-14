@@ -3,24 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <link rel="icon" type="image/vnd.icon" href="OIP.jpg">
+    <link rel="icon" type="image/vnd.icon" href="OIP.jpg">
     <title>Bienvenue sur Starkot48e</title>
     <!-- Ajouter Google Fonts pour des polices modernes -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
+        /* Corps de la page sombre */
         body {
             font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f9f9f9;
-            color: #333;
+            background-color: #121212; /* Fond sombre */
+            color: #ecf0f1; /* Texte clair pour la lisibilité */
         }
         header {
-            background-color: #2c3e50;
+            background-color: #1a2327; /* Fond plus sombre */
             color: #ecf0f1;
             padding: 20px;
             text-align: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -31,12 +32,13 @@
             font-size: 36px;
             font-weight: 600;
         }
+        /* Style pour la photo de profil */
         .profile-pic {
             width: 80px;
             height: 80px;
-            border-radius: 50%;
-            border: 3px solid #fff;
-            object-fit: cover;
+            border-radius: 50%; /* Rendre l'image ronde */
+            border: 3px solid #fff; /* Bordure blanche autour de l'image */
+            object-fit: cover; /* S'assurer que l'image est bien ajustée */
         }
         .container {
             width: 90%;
@@ -46,7 +48,7 @@
             overflow: hidden;
         }
         .post {
-            background: #fff;
+            background: #2c3e50; /* Fond plus sombre pour les articles */
             margin: 20px 0;
             padding: 25px;
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
@@ -59,14 +61,14 @@
         }
         .post h2 {
             font-size: 28px;
-            color: #2c3e50;
+            color: #ecf0f1; /* Texte clair pour les titres */
         }
         .post p {
             line-height: 1.8;
-            color: #7f8c8d;
+            color: #bdc3c7; /* Texte légèrement moins clair */
         }
         footer {
-            background-color: #2c3e50;
+            background-color: #1a2327; /* Fond sombre pour le footer */
             color: #ecf0f1;
             text-align: center;
             padding: 15px 0;
@@ -74,6 +76,13 @@
             bottom: 0;
             width: 100%;
             font-size: 14px;
+        }
+        a {
+            color: #3498db; /* Lien bleu clair */
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
         }
         @media (max-width: 768px) {
             .container {
@@ -88,13 +97,13 @@
 <body>
     <header>
         <!-- Photo de profil -->
-        <img src="OIP.jpg" alt="Photo de profil" class="OIP.jpg">
+        <img src="OIP.jpg" alt="Photo de profil" class="profile-pic">
         <h1>Bienvenue sur mon blog</h1>
     </header>
     <div class="container">
         <div class="post">
             <h2>Je suis un jeune dev</h2>
-            <p>Rendez-vous sur <a href="https://linux-scratcher.fr" target="_blank" style="color: #3498db; text-decoration: none; font-weight: bold;">linux-scratcher.fr</a> pour en savoir plus!</p>
+            <p>Rendez-vous sur <a href="https://linux-scratcher.fr" target="_blank">linux-scratcher.fr</a> pour en savoir plus!</p>
         </div>
     </div>
     <footer>
@@ -102,5 +111,3 @@
     </footer>
 </body>
 </html>
-
-
