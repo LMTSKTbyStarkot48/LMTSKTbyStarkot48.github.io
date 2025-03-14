@@ -23,9 +23,9 @@
             text-align: center;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
             display: flex;
+            flex-direction: column; /* Organise les éléments en colonne */
             justify-content: center;
             align-items: center;
-            gap: 20px;
         }
         header h1 {
             margin: 0;
@@ -34,11 +34,12 @@
         }
         /* Style pour la photo de profil */
         .profile-pic {
-            width: 80px;
-            height: 80px;
+            width: 120px; /* Agrandir la photo de profil */
+            height: 120px;
             border-radius: 50%; /* Rendre l'image ronde */
             border: 3px solid #fff; /* Bordure blanche autour de l'image */
             object-fit: cover; /* S'assurer que l'image est bien ajustée */
+            margin-bottom: 15px; /* Espacement entre la photo et le titre */
         }
         .container {
             width: 90%;
@@ -111,3 +112,4 @@
     </footer>
 </body>
 </html>
+
