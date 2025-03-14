@@ -20,11 +20,22 @@
             padding: 20px;
             text-align: center;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
         }
         header h1 {
             margin: 0;
             font-size: 36px;
             font-weight: 600;
+        }
+        .profile-pic {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 3px solid #fff;
+            object-fit: cover;
         }
         .container {
             width: 90%;
@@ -75,6 +86,8 @@
 </head>
 <body>
     <header>
+        <!-- Photo de profil -->
+        <img src="https://www.example.com/ton-image.jpg" alt="Photo de profil" class="profile-pic">
         <h1>Bienvenue sur mon blog</h1>
     </header>
     <div class="container">
@@ -88,4 +101,5 @@
     </footer>
 </body>
 </html>
+
 
