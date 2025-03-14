@@ -3,113 +3,200 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/vnd.icon" href="OIP.jpg">
-    <title>Bienvenue sur Starkot48e</title>
-    <!-- Ajouter Google Fonts pour des polices modernes -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Chat avec LLaMA</title>
     <style>
-        /* Corps de la page sombre */
-        body {
-            font-family: 'Poppins', sans-serif;
+        /* Reset CSS */
+        * {
             margin: 0;
             padding: 0;
-            background-color: #121212; /* Fond sombre */
-            color: #ecf0f1; /* Texte clair pour la lisibilité */
+            box-sizing: border-box;
         }
-        header {
-            background-color: #1a2327; /* Fond plus sombre */
-            color: #ecf0f1;
-            padding: 20px;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f2f5;
             display: flex;
-            flex-direction: column; /* Organise les éléments en colonne */
             justify-content: center;
             align-items: center;
+            height: 100vh;
+            padding: 20px;
         }
-        header h1 {
-            margin: 0;
-            font-size: 36px;
-            font-weight: 600;
-        }
-        /* Style pour la photo de profil */
-        .profile-pic {
-            width: 150px; /* Agrandir la photo de profil */
-            height: 150px;
-            border-radius: 50%; /* Rendre l'image ronde */
-            border: 3px solid #fff; /* Bordure blanche autour de l'image */
-            object-fit: cover; /* S'assurer que l'image est bien ajustée */
-            margin-bottom: 15px; /* Espacement entre la photo et le titre */
-        }
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 30px auto;
-            padding: 0 15px;
-            overflow: hidden;
-        }
-        .post {
-            background: #2c3e50; /* Fond plus sombre pour les articles */
-            margin: 20px 0;
-            padding: 25px;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            transition: all 0.3s ease;
-        }
-        .post:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-        }
-        .post h2 {
-            font-size: 28px;
-            color: #ecf0f1; /* Texte clair pour les titres */
-        }
-        .post p {
-            line-height: 1.8;
-            color: #bdc3c7; /* Texte légèrement moins clair */
-        }
-        footer {
-            background-color: #1a2327; /* Fond sombre pour le footer */
-            color: #ecf0f1;
-            text-align: center;
-            padding: 15px 0;
-            position: relative;
-            bottom: 0;
+
+        #chat-container {
             width: 100%;
-            font-size: 14px;
+            max-width: 500px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 90vh;
         }
-        a {
-            color: #3498db; /* Lien bleu clair */
-            text-decoration: none;
+
+        /* Style de la photo de profil agrandie */
+        .profile-pic {
+            width: 150px; /* Taille agrandie */
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid #fff;
+            object-fit: cover;
+            margin: 20px auto;
         }
-        a:hover {
-            text-decoration: underline;
+
+        #chat-box {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background-color: #f9f9f9;
+            border-bottom: 1px solid #ddd;
         }
-        @media (max-width: 768px) {
-            .container {
-                width: 95%;
-            }
-            header h1 {
-                font-size: 28px;
-            }
+
+        .message {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .message.user {
+            justify-content: flex-end;
+        }
+
+        .message.bot {
+            justify-content: flex-start;
+        }
+
+        .message-content {
+            max-width: 70%;
+            padding: 10px 15px;
+            border-radius: 12px;
+            position: relative;
+        }
+
+        .message.user .message-content {
+            background-color: #007bff;
+            color: #fff;
+            border-bottom-right-radius: 4px;
+        }
+
+        .message.bot .message-content {
+            background-color: #e9ecef;
+            color: #333;
+            border-bottom-left-radius: 4px;
+        }
+
+        #user-input-container {
+            display: flex;
+            padding: 10px;
+            background-color: #fff;
+            border-top: 1px solid #ddd;
+        }
+
+        #user-input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        #user-input:focus {
+            border-color: #007bff;
+        }
+
+        #send-btn {
+            margin-left: 10px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        #send-btn:hover {
+            background-color: #0056b3;
+        }
+
+        /* Scrollbar personnalisée */
+        #chat-box::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        #chat-box::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        #chat-box::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+
+        #chat-box::-webkit-scrollbar-thumb:hover {
+            background: #555;
         }
     </style>
 </head>
 <body>
-    <header>
-        <!-- Photo de profil -->
+    <div id="chat-container">
+        <!-- Photo de profil agrandie -->
         <img src="OIP.jpg" alt="Photo de profil" class="profile-pic">
-        <h1>Bienvenue sur mon blog</h1>
-    </header>
-    <div class="container">
-        <div class="post">
-            <h2>Je suis un jeune dev</h2>
-            <p>Je fais partie de l'équipe <a href="https://linux-scratcher.fr" target="_blank">linux-scratcher.fr</a>.</p>
+        
+        <div id="chat-box"></div>
+        <div id="user-input-container">
+            <input type="text" id="user-input" placeholder="Tapez votre message...">
+            <button id="send-btn">Envoyer</button>
         </div>
     </div>
-    <footer>
-        <p>&copy; 2025 Starkot48 - Tous droits réservés</p>
-    </footer>
+
+    <script>
+        const chatBox = document.getElementById("chat-box");
+        const userInput = document.getElementById("user-input");
+        const sendBtn = document.getElementById("send-btn");
+
+        sendBtn.addEventListener("click", async () => {
+            const message = userInput.value;
+            if (message.trim() === "") return;
+
+            appendMessage("Vous: " + message, "user");
+            userInput.value = "";
+
+            try {
+                const response = await fetch("/chat", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ message })
+                });
+
+                const data = await response.json();
+                if (data.error) {
+                    appendMessage("Erreur: " + data.error, "error");
+                } else {
+                    appendMessage("LLaMA: " + data.response, "bot");
+                }
+            } catch (error) {
+                appendMessage("Erreur: Impossible de communiquer avec le serveur", "error");
+            }
+        });
+
+        function appendMessage(text, sender) {
+            const messageElement = document.createElement("div");
+            messageElement.classList.add("message", sender);
+
+            const messageContent = document.createElement("div");
+            messageContent.classList.add("message-content");
+            messageContent.textContent = text;
+
+            messageElement.appendChild(messageContent);
+            chatBox.appendChild(messageElement);
+
+            // Faire défiler vers le bas pour voir le nouveau message
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+    </script>
 </body>
 </html>
-
