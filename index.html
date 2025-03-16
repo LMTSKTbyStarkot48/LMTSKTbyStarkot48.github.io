@@ -15,29 +15,7 @@
             padding: 0;
             background-color: #121212; /* Fond sombre */
             color: #ecf0f1; /* Texte clair pour la lisibilité */
-            position: relative; /* Permet de positionner la bande LED par rapport au corps */
-            overflow: hidden;
         }
-        
-        /* Bande LED multicolore animée */
-        .led-strip {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px; /* Hauteur de la bande LED */
-            background: linear-gradient(90deg, red, yellow, green, cyan, blue, magenta, red);
-            background-size: 300% 100%;
-            animation: led-animation 5s linear infinite;
-            z-index: 10;
-        }
-
-        /* Animation de défilement des couleurs */
-        @keyframes led-animation {
-            0% { background-position: 0 0; }
-            100% { background-position: -300% 0; }
-        }
-
         header {
             background-color: #1a2327; /* Fond plus sombre */
             color: #ecf0f1;
@@ -178,9 +156,6 @@
     </style>
 </head>
 <body>
-    <!-- Bande LED animée -->
-    <div class="led-strip"></div>
-
     <header>
         <!-- Photo de profil -->
         <img src="OIP.jpg" alt="Photo de profil" class="profile-pic">
@@ -224,5 +199,3 @@
     </script>
 </body>
 </html>
-
-
