@@ -15,7 +15,52 @@
             padding: 0;
             background-color: #121212; /* Fond sombre */
             color: #ecf0f1; /* Texte clair pour la lisibilité */
+            position: relative; /* Permet de positionner les bandes LED */
+            overflow: hidden;
         }
+
+        /* Bande LED multicolore animée autour de la page */
+        .led-strip {
+            position: absolute;
+            background: linear-gradient(90deg, red, yellow, green, cyan, blue, magenta, red);
+            background-size: 300% 100%;
+            animation: led-animation 5s linear infinite;
+            z-index: 10;
+        }
+
+        /* Position des bandes LED sur chaque côté */
+        .led-strip.top, .led-strip.bottom {
+            height: 5px;
+            width: 100%;
+        }
+
+        .led-strip.left, .led-strip.right {
+            width: 5px;
+            height: 100%;
+        }
+
+        .led-strip.top {
+            top: 0;
+        }
+
+        .led-strip.bottom {
+            bottom: 0;
+        }
+
+        .led-strip.left {
+            left: 0;
+        }
+
+        .led-strip.right {
+            right: 0;
+        }
+
+        /* Animation de défilement des couleurs */
+        @keyframes led-animation {
+            0% { background-position: 0 0; }
+            100% { background-position: -300% 0; }
+        }
+
         header {
             background-color: #1a2327; /* Fond plus sombre */
             color: #ecf0f1;
@@ -156,6 +201,12 @@
     </style>
 </head>
 <body>
+    <!-- Bande LED animée sur chaque côté de la page -->
+    <div class="led-strip top"></div>
+    <div class="led-strip bottom"></div>
+    <div class="led-strip left"></div>
+    <div class="led-strip right"></div>
+
     <header>
         <!-- Photo de profil -->
         <img src="OIP.jpg" alt="Photo de profil" class="profile-pic">
@@ -198,4 +249,4 @@
         });
     </script>
 </body>
-</html>
+</
