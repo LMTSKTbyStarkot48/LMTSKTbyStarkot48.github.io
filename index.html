@@ -123,6 +123,15 @@
             background-color: #2980b9;
         }
 
+        .comment-utterance {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #ecf0f1;
+            color: #333333;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
         @media (max-width: 768px) {
             .container {
                 width: 95%;
@@ -149,13 +158,33 @@
     <!-- Section des commentaires -->
     <div class="comment-section">
         <h2>Laissez un commentaire</h2>
-        <textarea placeholder="Écrivez votre commentaire ici..."></textarea>
+        <textarea id="comment" placeholder="Écrivez votre commentaire ici..."></textarea>
         <br>
-        <button>Envoyer le commentaire</button>
+        <button id="submit-comment">Envoyer le commentaire</button>
+
+        <!-- Zone d'utérances pour afficher le commentaire envoyé -->
+        <div id="comment-utterance" class="comment-utterance" style="display: none;"></div>
     </div>
 
     <footer>
         <p>&copy; 2025 Starkot48 - Tous droits réservés</p>
     </footer>
+
+    <script>
+        // Fonction pour afficher l'utérance du commentaire
+        document.getElementById('submit-comment').addEventListener('click', function() {
+            var comment = document.getElementById('comment').value;
+            var utteranceDiv = document.getElementById('comment-utterance');
+
+            if (comment.trim() !== "") {
+                utteranceDiv.textContent = "Votre commentaire : " + comment;
+                utteranceDiv.style.display = "block"; // Affiche le message d'utérance
+                document.getElementById('comment').value = ""; // Efface le champ texte après envoi
+            } else {
+                utteranceDiv.textContent = "Veuillez écrire un commentaire avant de l'envoyer.";
+                utteranceDiv.style.display = "block";
+            }
+        });
+    </script>
 </body>
 </html>
