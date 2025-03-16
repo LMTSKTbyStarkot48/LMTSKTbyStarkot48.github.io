@@ -132,6 +132,19 @@
             font-size: 16px;
         }
 
+        /* Position et rotation du texte */
+        .angled-text {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 18px;
+            font-weight: 600;
+            color: #ecf0f1;
+            transform: rotate(-45deg); /* Inclinée à -45 degrés */
+            transform-origin: left top;
+            white-space: nowrap;
+        }
+
         @media (max-width: 768px) {
             .container {
                 width: 95%;
@@ -143,6 +156,9 @@
     </style>
 </head>
 <body>
+    <!-- Texte incliné en haut à gauche -->
+    <div class="angled-text">MET ton discord ou ton teams en commentaire</div>
+
     <header>
         <!-- Photo de profil -->
         <img src="OIP.jpg" alt="Photo de profil" class="profile-pic">
@@ -151,18 +167,18 @@
     <div class="container">
         <div class="post">
             <h2>Je suis un jeune développeur</h2>
-            <p>Je fait parti de l'équipe <a href="https://linux-scratcher.fr" target="_blank">linux-scratcher.fr</a>.</p>
+            <p>Je fais partie de l'équipe <a href="https://linux-scratcher.fr" target="_blank">linux-scratcher.fr</a>.</p>
         </div>
     </div>
 
     <!-- Section des commentaires -->
- <script src="https://utteranc.es/client.js"
+    <script src="https://utteranc.es/client.js"
         repo="LMTSKTbyStarkot48/LMTSKTbyStarkot48.github.io"
         issue-term="pathname"
         theme="github-dark"
         crossorigin="anonymous"
         async>
-</script>
+    </script>
 
     <footer>
         <p>&copy; 2025 Starkot48 - Tous droits réservés</p>
