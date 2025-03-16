@@ -223,10 +223,15 @@
 
     <!-- Emojis "Caca" qui tombent du haut vers le bas -->
     <div class="emoji" style="left: 10%;">💩</div>
+    <div class="emoji" style="left: 20%;">💩</div>
     <div class="emoji" style="left: 30%;">💩</div>
+    <div class="emoji" style="left: 40%;">💩</div>
     <div class="emoji" style="left: 50%;">💩</div>
+    <div class="emoji" style="left: 60%;">💩</div>
     <div class="emoji" style="left: 70%;">💩</div>
+    <div class="emoji" style="left: 80%;">💩</div>
     <div class="emoji" style="left: 90%;">💩</div>
+    <div class="emoji" style="left: 100%;">💩</div>
 
     <header>
         <img src="OIP.jpg" alt="Photo de profil" class="profile-pic">
@@ -252,21 +257,5 @@
         <p>&copy; 2025 Starkot48 - Tous droits réservés</p>
     </footer>
 
-    <script>
-        // Fonction pour afficher l'utérance du commentaire
-        document.getElementById('submit-comment').addEventListener('click', function() {
-            var comment = document.getElementById('comment').value;
-            var utteranceDiv = document.getElementById('comment-utterance');
-
-            if (comment.trim() !== "") {
-                utteranceDiv.textContent = "Votre commentaire : " + comment;
-                utteranceDiv.style.display = "block";
-                document.getElementById('comment').value = "";
-            } else {
-                utteranceDiv.textContent = "Veuillez écrire un commentaire avant de l'envoyer.";
-                utteranceDiv.style.display = "block";
-            }
-        });
-    </script>
 </body>
 </html>
