@@ -58,7 +58,7 @@
             font-size: 30px;
             position: absolute;
             top: -50px;
-            animation: emoji-fall 2s linear infinite; /* Durée de l'animation réduite à 2 secondes */
+            animation: emoji-fall 5s linear infinite;
         }
 
         /* Styles généraux pour le reste de la page */
@@ -168,4 +168,94 @@
             background-color: #f5f5f5;
         }
 
-        .co
+        .comment-section button {
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .comment-section button:hover {
+            background-color: #2980b9;
+        }
+
+        .comment-utterance {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #ecf0f1;
+            color: #333333;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        .angled-text {
+            position: absolute;
+            top: 180px;
+            left: 20px;
+            font-size: 18px;
+            font-weight: 600;
+            color: #ecf0f1;
+            transform: rotate(-45deg);
+            transform-origin: left top;
+            white-space: nowrap;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+            }
+            header h1 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Bande LED animée sur chaque côté de la page -->
+    <div class="led-strip top"></div>
+    <div class="led-strip bottom"></div>
+    <div class="led-strip left"></div>
+    <div class="led-strip right"></div>
+
+    <!-- Emojis "Caca" qui tombent du haut vers le bas -->
+    <div class="emoji" style="left: 10%;">💩</div>
+    <div class="emoji" style="left: 20%;">💩</div>
+    <div class="emoji" style="left: 30%;">💩</div>
+    <div class="emoji" style="left: 40%;">💩</div>
+    <div class="emoji" style="left: 50%;">💩</div>
+    <div class="emoji" style="left: 60%;">💩</div>
+    <div class="emoji" style="left: 70%;">💩</div>
+    <div class="emoji" style="left: 80%;">💩</div>
+    <div class="emoji" style="left: 90%;">💩</div>
+    <div class="emoji" style="left: 100%;">💩</div>
+
+    <header>
+        <img src="OIP.jpg" alt="Photo de profil" class="profile-pic">
+        <h1>Bienvenue sur mon blog</h1>
+    </header>
+
+    <div class="container">
+        <div class="post">
+            <h2>Je suis un jeune développeur</h2>
+            <p>Je fais partie de l'équipe <a href="https://linux-scratcher.fr" target="_blank">linux-scratcher.fr</a>.</p>
+        </div>
+    </div>
+
+    <script src="https://utteranc.es/client.js"
+        repo="LMTSKTbyStarkot48/LMTSKTbyStarkot48.github.io"
+        issue-term="pathname"
+        theme="github-dark"
+        crossorigin="anonymous"
+        async>
+    </script>
+
+    <footer>
+        <p>&copy; 2025 Starkot48 - Tous droits réservés</p>
+    </footer>
+
+</body>
+</html>
