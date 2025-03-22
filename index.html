@@ -169,27 +169,6 @@
             text-decoration: underline;
         }
 
-        /* Animation des pseudos défilants */
-        .scrolling-names {
-            position: absolute;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            white-space: nowrap;
-            font-size: 18px;
-            color: #fff;
-            animation: scroll-left 10s linear infinite;
-        }
-
-        @keyframes scroll-left {
-            0% {
-                transform: translateX(100%);
-            }
-            100% {
-                transform: translateX(-100%);
-            }
-        }
-
         /* Section des commentaires */
         .comment-section {
             background-color: #ffffff;
@@ -240,6 +219,18 @@
             font-size: 16px;
         }
 
+        .angled-text {
+            position: absolute;
+            top: 180px;
+            left: 20px;
+            font-size: 18px;
+            font-weight: 600;
+            color: #ecf0f1;
+            transform: rotate(-45deg);
+            transform-origin: left top;
+            white-space: nowrap;
+        }
+
         @media (max-width: 768px) {
             .container {
                 width: 95%;
@@ -276,13 +267,9 @@
 
         <!-- Bouton "Pousse bleu" et compteur -->
         <div style="display: flex; align-items: center; margin-top: 10px;">
-            <input type="text" id="pseudo" placeholder="Entrez votre pseudo" style="padding: 5px 10px; margin-right: 10px;">
             <button class="like-button" onclick="increaseLikeCount()">Pousse bleu</button>
             <span class="like-count" id="likeCount">0</span>
         </div>
-
-        <!-- Zone pour afficher les pseudos défilants -->
-        <div class="scrolling-names" id="scrollingNames"></div>
     </header>
 
     <div class="container">
@@ -292,36 +279,25 @@
         </div>
     </div>
 
+    <script src="https://utteranc.es/client.js"
+        repo="LMTSKTbyStarkot48/LMTSKTbyStarkot48.github.io"
+        issue-term="pathname"
+        theme="github-dark"
+        crossorigin="anonymous"
+        async>
+    </script>
+
     <footer>
         <p>&copy; 2025 Starkot48 - Tous droits réservés</p>
     </footer>
 
     <script>
-        // Récupérer les données sauvegardées dans le stockage local
-        let likeCount = parseInt(localStorage.getItem('likeCount')) || 0;
-        let users = JSON.parse(localStorage.getItem('users')) || [];
-
-        // Mettre à jour l'affichage au chargement de la page
-        document.getElementById("likeCount").innerText = likeCount;
-        document.getElementById("scrollingNames").innerText = users.join(' 🟦 ');
+        let likeCount = 0;
 
         function increaseLikeCount() {
-            let pseudo = document.getElementById('pseudo').value.trim();
-
-            if (pseudo) {
-                likeCount++;
-                users.push(pseudo);
-                document.getElementById("likeCount").innerText = likeCount;
-
-                // Ajouter les pseudos défilants
-                document.getElementById("scrollingNames").innerText = users.join(' 🟦 ');
-
-                // Sauvegarder les nouvelles données dans le stockage local
-                localStorage.setItem('likeCount', likeCount);
-                localStorage.setItem('users', JSON.stringify(users));
-            }
+            likeCount++;
+            document.getElementById("likeCount").innerText = likeCount;
         }
     </script>
 </body>
 </html>
-
