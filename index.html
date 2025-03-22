@@ -117,6 +117,13 @@
             font-weight: bold;
         }
 
+        .visit-count {
+            color: #ecf0f1;
+            font-size: 18px;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
         .container {
             width: 90%;
             max-width: 1200px;
@@ -265,6 +272,12 @@
         <img src="OIP.jpg" alt="Photo de profil" class="profile-pic">
         <h1>Bienvenue sur mon blog</h1>
 
+        <!-- Affichage du nombre de personnes qui se sont connectées -->
+        <div style="display: flex; align-items: center; margin-top: 10px;">
+            <span class="visit-count" id="visitCount">0</span>
+            <span>Personnes se sont déjà connectées</span>
+        </div>
+
         <!-- Bouton "Pousse bleu" et compteur -->
         <div style="display: flex; align-items: center; margin-top: 10px;">
             <button class="like-button" onclick="increaseLikeCount()">Pousse bleu</button>
@@ -292,19 +305,26 @@
     </footer>
 
     <script>
-        // Chargement du compteur depuis le stockage local
+        // Chargement du compteur de likes depuis le stockage local
         let likeCount = localStorage.getItem('likeCount') ? parseInt(localStorage.getItem('likeCount')) : 0;
         document.getElementById("likeCount").innerText = likeCount;
 
         function increaseLikeCount() {
             likeCount++;
             document.getElementById("likeCount").innerText = likeCount;
-
-            // Sauvegarde du compteur dans le stockage local
+            // Sauvegarde du compteur de likes dans le stockage local
             localStorage.setItem('likeCount', likeCount);
         }
+
+        // Comptage des visites
+        let visitCount = localStorage.getItem('visitCount') ? parseInt(localStorage.getItem('visitCount')) : 0;
+        visitCount++;
+        document.getElementById("visitCount").innerText = visitCount;
+        // Sauvegarde du compteur de visites dans le stockage local
+        localStorage.setItem('visitCount', visitCount);
     </script>
 </body>
 </html>
+
 
 
