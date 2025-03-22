@@ -253,37 +253,13 @@
             white-space: nowrap;
         }
 
-        /* Section des VPN gratuits */
-        .vpn-section {
-            background-color: #333333;
-            color: #ecf0f1;
-            padding: 20px;
-            margin-top: 40px;
-            border-radius: 8px;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        .vpn-section h2 {
-            font-size: 28px;
-            margin-bottom: 20px;
-        }
-
-        .vpn-section a {
-            color: #3498db;
-            text-decoration: none;
-        }
-
-        .vpn-section a:hover {
-            text-decoration: underline;
-        }
-
-        .vpn-section ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .vpn-section ul li {
-            margin: 10px 0;
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+            }
+            header h1 {
+                font-size: 28px;
+            }
         }
     </style>
 </head>
@@ -337,40 +313,41 @@
         </div>
     </div>
 
-    <!-- Section VPN Gratuits -->
-    <div class="vpn-section">
-        <h2>VPN Gratuits Recommandés</h2>
-        <p>Voici quelques services VPN gratuits que vous pouvez utiliser pour protéger votre vie privée en ligne :</p>
-        <ul>
-            <li><a href="https://www.protonvpn.com/fr/free-vpn" target="_blank">ProtonVPN (Gratuit)</a> - Un VPN réputé pour sa sécurité et sa politique de non-conservation des logs.</li>
-            <li><a href="https://www.windscribe.com/free-vpn" target="_blank">Windscribe VPN (Gratuit)</a> - Un VPN avec une généreuse allocation de données mensuelles gratuite et une politique de confidentialité solide.</li>
-            <li><a href="https://www.hide.me/en/softwares" target="_blank">Hide.me VPN (Gratuit)</a> - Une solution VPN qui ne conserve pas de logs et offre un service gratuit avec des fonctionnalités limitées.</li>
-            <li><a href="https://www.hotspotshield.com/free-vpn/" target="_blank">Hotspot Shield (Gratuit)</a> - Un VPN populaire avec une version gratuite, mais avec des publicités.</li>
-            <li><a href="https://www.tunnelbear.com" target="_blank">TunnelBear (Gratuit)</a> - Un VPN facile à utiliser qui propose une version gratuite limitée à 500 Mo par mois.</li>
-            <li><a href="https://www.betternet.co/" target="_blank">Betternet (Gratuit)</a> - Un VPN qui vous permet de naviguer de manière privée sans frais.</li>
-        </ul>
-    </div>
+    <script src="https://utteranc.es/client.js"
+        repo="LMTSKTbyStarkot48/LMTSKTbyStarkot48.github.io"
+        issue-term="pathname"
+        theme="github-dark"
+        crossorigin="anonymous"
+        async>
+    </script>
 
     <footer>
-        <p>© 2025 Starkot48e | Tous droits réservés.</p>
+        <p>&copy; 2025 Starkot48 - Tous droits réservés</p>
     </footer>
 
     <script>
-        let likeCount = 0;
+        // Chargement du compteur de likes depuis le stockage local
+        let likeCount = localStorage.getItem('likeCount') ? parseInt(localStorage.getItem('likeCount')) : 0;
+        document.getElementById("likeCount").innerText = likeCount;
 
         function increaseLikeCount() {
             likeCount++;
-            document.getElementById('likeCount').innerText = likeCount;
+            document.getElementById("likeCount").innerText = likeCount;
+            // Sauvegarde du compteur de likes dans le stockage local
+            localStorage.setItem('likeCount', likeCount);
         }
 
-        let visitCount = 0;
+        // Comptage des visites
+        let visitCount = localStorage.getItem('visitCount') ? parseInt(localStorage.getItem('visitCount')) : 0;
+        visitCount++;
+        document.getElementById("visitCount").innerText = visitCount;
+        // Sauvegarde du compteur de visites dans le stockage local
+        localStorage.setItem('visitCount', visitCount);
 
-        function updateVisitCount() {
-            visitCount++;
-            document.getElementById('visitCount').innerText = visitCount;
-        }
-
-        window.onload = updateVisitCount;
+        // Après un délai, masquer le message de vérification pour simuler la fin de la vérification
+        setTimeout(function() {
+            document.querySelector('.cf-message').style.display = 'none';
+        }, 3000); // 3 secondes de délai pour simuler la vérification
     </script>
 </body>
 </html>
