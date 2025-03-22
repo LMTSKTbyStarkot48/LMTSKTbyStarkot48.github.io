@@ -292,12 +292,18 @@
     </footer>
 
     <script>
-        let likeCount = 0;
+        // Chargement du compteur depuis le stockage local
+        let likeCount = localStorage.getItem('likeCount') ? parseInt(localStorage.getItem('likeCount')) : 0;
+        document.getElementById("likeCount").innerText = likeCount;
 
         function increaseLikeCount() {
             likeCount++;
             document.getElementById("likeCount").innerText = likeCount;
+
+            // Sauvegarde du compteur dans le stockage local
+            localStorage.setItem('likeCount', likeCount);
         }
     </script>
 </body>
 </html>
+
