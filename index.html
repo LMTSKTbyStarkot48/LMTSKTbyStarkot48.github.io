@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -288,16 +287,12 @@
             margin: 10px 0;
         }
 
-        /* Style spécifique pour centrer le reCAPTCHA */
-        .captcha-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh; /* Prend toute la hauteur de la page */
-        }
-
+        /* Style spécifique pour le reCAPTCHA */
         .g-recaptcha {
-            display: inline-block;
+            display: block;
+            margin: 40px auto;
+            text-align: center;
+            z-index: 100;
         }
     </style>
 </head>
@@ -307,13 +302,13 @@
         <p>Vérification en cours...</p>
         <p>Patientez pendant que nous vérifions votre accès.</p>
     </div>
-
+    
     <!-- Bande LED animée sur chaque côté de la page -->
     <div class="led-strip top"></div>
     <div class="led-strip bottom"></div>
     <div class="led-strip left"></div>
     <div class="led-strip right"></div>
-
+    
     <!-- Emojis "Caca" qui tombent du haut vers le bas -->
     <div class="emoji" style="left: 10%; top: -50px;">💩</div>
     <div class="emoji" style="left: 20%; top: -100px;">💩</div>
@@ -346,10 +341,8 @@
         </div>
     </div>
 
-    <!-- Ajout du CAPTCHA Cloudflare centré -->
-    <div class="captcha-container">
-        <div class="g-recaptcha" data-sitekey="0x4AAAAAABCFw21HJRMIzTGj"></div>
-    </div>
+    <!-- Ajout du CAPTCHA Cloudflare (ou reCAPTCHA dans cet exemple) -->
+    <div class="g-recaptcha" data-sitekey="0x4AAAAAABCFw21HJRMIzTGj"></div>
 
     <footer>
         <p>© 2025 Starkot48e | Tous droits réservés.</p>
@@ -374,3 +367,4 @@
     </script>
 </body>
 </html>
+
