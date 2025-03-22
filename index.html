@@ -77,6 +77,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            position: relative;
         }
 
         header h1 {
@@ -92,6 +93,28 @@
             border: 3px solid #fff;
             object-fit: cover;
             margin-bottom: 15px;
+        }
+
+        .like-button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            display: inline-block;
+            margin-left: 20px;
+        }
+
+        .like-button:hover {
+            background-color: #2980b9;
+        }
+
+        .like-count {
+            color: #ecf0f1;
+            font-size: 18px;
+            font-weight: bold;
         }
 
         .container {
@@ -241,6 +264,12 @@
     <header>
         <img src="OIP.jpg" alt="Photo de profil" class="profile-pic">
         <h1>Bienvenue sur mon blog</h1>
+
+        <!-- Bouton "Pousse bleu" et compteur -->
+        <div style="display: flex; align-items: center; margin-top: 10px;">
+            <button class="like-button" onclick="increaseLikeCount()">Pousse bleu</button>
+            <span class="like-count" id="likeCount">0</span>
+        </div>
     </header>
 
     <div class="container">
@@ -262,5 +291,13 @@
         <p>&copy; 2025 Starkot48 - Tous droits réservés</p>
     </footer>
 
+    <script>
+        let likeCount = 0;
+
+        function increaseLikeCount() {
+            likeCount++;
+            document.getElementById("likeCount").innerText = likeCount;
+        }
+    </script>
 </body>
 </html>
