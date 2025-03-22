@@ -282,53 +282,5 @@
         </div>
 
         <!-- Zone pour afficher les pseudos défilants -->
-        <div class="scrolling-names" id="scrollingNames"></div>
-    </header>
+        <div class="scrolling-names" id="scrollingNames"></div
 
-    <div class="container">
-        <div class="post">
-            <h2>Je suis un jeune développeur</h2>
-            <p>Je fais partie de l'équipe <a href="https://linux-scratcher.fr" target="_blank">linux-scratcher.fr</a>.</p>
-        </div>
-    </div>
-
-    <script src="https://utteranc.es/client.js"
-        repo="LMTSKTbyStarkot48/LMTSKTbyStarkot48.github.io"
-        issue-term="pathname"
-        theme="github-dark"
-        crossorigin="anonymous"
-        async>
-    </script>
-
-    <footer>
-        <p>&copy; 2025 Starkot48 - Tous droits réservés</p>
-    </footer>
-
-    <script>
-        // Récupérer les données sauvegardées dans le stockage local
-        let likeCount = parseInt(localStorage.getItem('likeCount')) || 0;
-        let users = JSON.parse(localStorage.getItem('users')) || [];
-
-        // Mettre à jour l'affichage au chargement de la page
-        document.getElementById("likeCount").innerText = likeCount;
-        document.getElementById("scrollingNames").innerText = users.join(' 🟦 ');
-
-        function increaseLikeCount() {
-            let pseudo = document.getElementById('pseudo').value.trim();
-
-            if (pseudo) {
-                likeCount++;
-                users.push(pseudo);
-                document.getElementById("likeCount").innerText = likeCount;
-
-                // Ajouter les pseudos défilants
-                document.getElementById("scrollingNames").innerText = users.join(' 🟦 ');
-
-                // Sauvegarder les nouvelles données dans le stockage local
-                localStorage.setItem('likeCount', likeCount);
-                localStorage.setItem('users', JSON.stringify(users));
-            }
-        }
-    </script>
-</body>
-</html>
