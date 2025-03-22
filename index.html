@@ -17,6 +17,21 @@
             overflow: hidden;
         }
 
+        /* Message de vérification Cloudflare */
+        .cf-message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 20px;
+            text-align: center;
+            z-index: 100;
+        }
+
         /* Activation du défilement fluide */
         html {
             scroll-behavior: smooth;
@@ -250,6 +265,12 @@
 </head>
 <body>
 
+    <!-- Message de vérification Cloudflare -->
+    <div class="cf-message">
+        <p>Vérification en cours...</p>
+        <p>Patientez pendant que nous vérifions votre accès.</p>
+    </div>
+
     <!-- Bande LED animée sur chaque côté de la page -->
     <div class="led-strip top"></div>
     <div class="led-strip bottom"></div>
@@ -322,6 +343,11 @@
         document.getElementById("visitCount").innerText = visitCount;
         // Sauvegarde du compteur de visites dans le stockage local
         localStorage.setItem('visitCount', visitCount);
+
+        // Après un délai, masquer le message de vérification pour simuler la fin de la vérification
+        setTimeout(function() {
+            document.querySelector('.cf-message').style.display = 'none';
+        }, 3000); // 3 secondes de délai pour simuler la vérification
     </script>
 </body>
 </html>
