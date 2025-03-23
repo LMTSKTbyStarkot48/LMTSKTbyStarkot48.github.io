@@ -346,7 +346,7 @@
 <body>
 
     <!-- Message de vérification Cloudflare -->
-    <div class="cf-message">
+    <div class="cf-message" id="cfMessage">
         <p>Vérification en cours...</p>
         <p>Patientez pendant que nous vérifions votre accès.</p>
     </div>
@@ -415,6 +415,11 @@
     </footer>
 
     <script>
+        // Simuler la fin de la vérification (vous pouvez remplacer cela par une vraie détection de la fin de Cloudflare)
+        setTimeout(() => {
+            document.getElementById('cfMessage').style.display = 'none';
+        }, 5000);  // Disparaît après 5 secondes pour la démo. Ajustez selon le vrai délai de vérification.
+
         // Chargement du compteur de likes depuis le stockage local
         let likeCount = localStorage.getItem('likeCount') ? parseInt(localStorage.getItem('likeCount')) : 0;
         document.getElementById('likeCount').textContent = likeCount;
@@ -478,6 +483,6 @@
             document.getElementById('chatbot-messages').scrollTop = document.getElementById('chatbot-messages').scrollHeight;
         }
     </script>
-
 </body>
 </html>
+
