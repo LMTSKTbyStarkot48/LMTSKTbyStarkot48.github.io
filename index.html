@@ -476,76 +476,8 @@
             messageElement.textContent = message;
             document.getElementById('chatbot-messages').appendChild(messageElement);
             document.getElementById('chatbot-messages').scrollTop = document.getElementById('chatbot-messages').scrollHeight;
-
-          // Fonction pour obtenir les réponses du chatbot avec un ton plus humain
-        function getBotResponse(userMessage) {
-            // Convertir le message de l'utilisateur en minuscule pour faciliter la comparaison
-            userMessage = userMessage.toLowerCase();
-
-
-
-            // Réponses plus variées et naturelles
-            if (userMessage.includes("bonjour") || userMessage.includes("salut")) {
-                return "Salut ! 😊 Comment ça va aujourd'hui ?";
-            } else if (userMessage.includes("ton nom") || userMessage.includes("qui es-tu")) {
-                return "Je suis Fish au chocolat, ton chatbot préféré ! 😄";
-            } else if (userMessage.includes("comment ça va") || userMessage.includes("ça va")) {
-                return "Ça va super bien, merci ! Et toi, comment ça va ? 😊";
-            } else if (userMessage.includes("aide") || userMessage.includes("comment")) {
-                return "Je suis là pour t'aider ! Dites-moi ce dont tu as besoin, je vais faire de mon mieux. 😎";
-            } else if (userMessage.includes("merci")) {
-                return "Avec plaisir ! 😊 Si tu as d'autres questions, je suis là.";
-            } else if (userMessage.includes("au revoir") || userMessage.includes("bye")) {
-                return "À bientôt ! 😄 N'hésite pas à revenir me parler si tu as besoin d'aide.";
-            } else if (userMessage.includes("quel est ton hobby")) {
-                return "J'adore discuter et apprendre de nouvelles choses ! 😁 Et toi, quel est ton hobby ?";
-            } else {
-                return "Hmm, je ne suis pas sûr de comprendre ça, mais si tu veux discuter, je suis là ! 😅";
-            }
-        }
-
-
-
-        // Fonction pour ajouter un message dans le chat
-        function addMessage(message, sender) {
-            let messageElement = document.createElement('div');
-            messageElement.classList.add('message');
-            
-            if (sender === 'bot') {
-                messageElement.classList.add('bot-message');
-            } else {
-                messageElement.classList.add('user-message');
-            }
-
-
-
-            // Ajouter un petit délai pour simuler la réflexion du bot
-            setTimeout(() => {
-                messageElement.textContent = message;
-                document.getElementById('chatbot-messages').appendChild(messageElement);
-                document.getElementById('chatbot-messages').scrollTop = document.getElementById('chatbot-messages').scrollHeight;
-            }, 1000); // Le délai est de 1 seconde
-        }
-
-
-
-        // Envoi du message du chatbot
-        function sendMessage() {
-            let userMessage = document.getElementById('userInput').value;
-            if (userMessage.trim() === '') return;
-            
-            addMessage(userMessage, 'user');
-            document.getElementById('userInput').value = '';
-
-
-
-            // Obtenir une réponse plus naturelle du bot
-            let botResponse = getBotResponse(userMessage);
-            addMessage(botResponse, 'bot');
-        }
-    </script>
-
-
+        }
+    </script>
 
 </body>
 </html>
