@@ -417,33 +417,54 @@
     <script>
         // Chargement du compteur de likes depuis le stockage local
         let likeCount = localStorage.getItem('likeCount') ? parseInt(localStorage.getItem('likeCount')) : 0;
-        document.getElementById("likeCount").innerText = likeCount;
+        document.getElementById('likeCount').textContent = likeCount;
 
+        // Augmenter le compteur de likes
         function increaseLikeCount() {
             likeCount++;
-            document.getElementById("likeCount").innerText = likeCount;
-            // Sauvegarde du compteur de likes dans le stockage local
             localStorage.setItem('likeCount', likeCount);
+            document.getElementById('likeCount').textContent = likeCount;
         }
 
-        // Comptage des visites
+        // Compteur de visites (stocké dans le localStorage)
         let visitCount = localStorage.getItem('visitCount') ? parseInt(localStorage.getItem('visitCount')) : 0;
         visitCount++;
-        document.getElementById("visitCount").innerText = visitCount;
-        // Sauvegarde du compteur de visites dans le stockage local
         localStorage.setItem('visitCount', visitCount);
+        document.getElementById('visitCount').textContent = visitCount;
 
-        // Simulation de la discussion avec le bot "Fish au chocolat"
+        // Envoi du message du chatbot
         function sendMessage() {
             let userMessage = document.getElementById('userInput').value;
             if (userMessage.trim() === '') return;
             addMessage(userMessage, 'user');
             document.getElementById('userInput').value = '';
+
+            // Réponses basées sur les questions courantes
+            let botResponse = getBotResponse(userMessage.toLowerCase());
+
             setTimeout(() => {
-                addMessage("Je suis Fish au chocolat, comment puis-je t'aider ?", 'bot');
+                addMessage(botResponse, 'bot');
             }, 1000);
         }
 
+        // Fonction pour obtenir les réponses du chatbot
+        function getBotResponse(userMessage) {
+            if (userMessage.includes("bonjour")) {
+                return "Salut, comment puis-je t'aider ?";
+            } else if (userMessage.includes("ton nom")) {
+                return "Je suis Fish au chocolat, ton assistant !";
+            } else if (userMessage.includes("qui es-tu")) {
+                return "Je suis un chatbot créé pour t'aider sur ce site.";
+            } else if (userMessage.includes("comment ça va")) {
+                return "Ça va bien, merci ! Et toi ?";
+            } else if (userMessage.includes("aide") || userMessage.includes("comment")) {
+                return "Je peux t'aider avec des informations sur ce site ou d'autres questions, n'hésite pas à demander.";
+            } else {
+                return "Désolé, je ne comprends pas ta question. Peux-tu reformuler ?";
+            }
+        }
+
+        // Fonction pour ajouter un message dans le chat
         function addMessage(message, sender) {
             let messageElement = document.createElement('div');
             messageElement.classList.add('message');
@@ -456,11 +477,8 @@
             document.getElementById('chatbot-messages').appendChild(messageElement);
             document.getElementById('chatbot-messages').scrollTop = document.getElementById('chatbot-messages').scrollHeight;
         }
-
-        // Après un délai, masquer le message de vérification pour simuler la fin de la vérification
-        setTimeout(function() {
-            document.querySelector('.cf-message').style.display = 'none';
-        }, 3000); // 3 secondes de délai pour simuler la vérification
     </script>
+
 </body>
 </html>
+
