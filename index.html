@@ -387,89 +387,97 @@
     </header>
 
     <div class="container">
-        <section class="comment-section">
-            <h2>Section des commentaires</h2>
-            <textarea placeholder="Laissez un commentaire..." id="commentText"></textarea>
-            <button onclick="submitComment()">Soumettre</button>
-            <div class="comment-utterance" id="commentOutput"></div>
-        </section>
+        <div class="post">
+            <h2>Je suis un jeune développeur</h2>
+            <p>Je fais partie de l'équipe <a href="https://linux-scratcher.fr" target="_blank">linux-scratcher.fr</a>.</p>
+        </div>
     </div>
 
     <div id="chatbot">
-        <div id="chatbot-header">Chatbot</div>
+        <div id="chatbot-header">Fish au chocolat</div>
         <div id="chatbot-messages"></div>
         <div id="chatbot-input">
-            <input type="text" id="userInput" placeholder="Tapez votre message...">
+            <input type="text" id="userInput" placeholder="Écris quelque chose...">
             <button onclick="sendMessage()">Envoyer</button>
         </div>
     </div>
 
+    <script src="https://utteranc.es/client.js"
+        repo="LMTSKTbyStarkot48/LMTSKTbyStarkot48.github.io"
+        issue-term="pathname"
+        theme="github-dark"
+        crossorigin="anonymous"
+        async>
+    </script>
+
     <footer>
-        <p>Merci de visiter mon site! &copy; 2025 Starkot48e. <a href="#">Politique de confidentialité</a> | <a href="#">Conditions d'utilisation</a></p>
+        <p>&copy; 2025 Starkot48 - Tous droits réservés</p>
     </footer>
 
     <script>
-        let visitCount = 0;
-        let likeCount = 0;
+        // Chargement du compteur de likes depuis le stockage local
+        let likeCount = localStorage.getItem('likeCount') ? parseInt(localStorage.getItem('likeCount')) : 0;
+        document.getElementById('likeCount').textContent = likeCount;
 
-        // Augmenter le nombre de personnes connectées
-        window.onload = function() {
-            visitCount++;
-            document.getElementById('visitCount').textContent = visitCount;
-        };
-
-        // Fonction pour augmenter le nombre de "Pousse bleu"
+        // Augmenter le compteur de likes
         function increaseLikeCount() {
             likeCount++;
+            localStorage.setItem('likeCount', likeCount);
             document.getElementById('likeCount').textContent = likeCount;
         }
 
-        // Fonction pour soumettre un commentaire
-        function submitComment() {
-            const commentText = document.getElementById('commentText').value;
-            if (commentText.trim() !== '') {
-                document.getElementById('commentOutput').textContent = "Votre commentaire : " + commentText;
-                document.getElementById('commentText').value = '';
-            }
-        }
+        // Compteur de visites (stocké dans le localStorage)
+        let visitCount = localStorage.getItem('visitCount') ? parseInt(localStorage.getItem('visitCount')) : 0;
+        visitCount++;
+        localStorage.setItem('visitCount', visitCount);
+        document.getElementById('visitCount').textContent = visitCount;
 
-        // Fonction pour envoyer un message au chatbot
+        // Envoi du message du chatbot
         function sendMessage() {
             let userMessage = document.getElementById('userInput').value;
             if (userMessage.trim() === '') return;
             addMessage(userMessage, 'user');
             document.getElementById('userInput').value = '';
 
-            // Appeler votre serveur backend pour obtenir la réponse de ChatGPT
-            fetch('http://localhost:3000/chat', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ message: userMessage }),
-            })
-            .then(response => response.json())
-            .then(data => {
-                addMessage(data.reply, 'bot');
-            })
-            .catch(error => {
-                console.error('Erreur:', error);
-            });
+            // Réponses basées sur les questions courantes
+            let botResponse = getBotResponse(userMessage.toLowerCase());
+
+            setTimeout(() => {
+                addMessage(botResponse, 'bot');
+            }, 1000);
         }
 
-        // Ajouter un message dans la boîte de conversation
-        function addMessage(message, sender) {
-            const messageElement = document.createElement('div');
-            messageElement.classList.add('message');
-            if (sender === 'user') {
-                messageElement.classList.add('user-message');
+        // Fonction pour obtenir les réponses du chatbot
+        function getBotResponse(userMessage) {
+            if (userMessage.includes("bonjour")) {
+                return "Salut, comment puis-je t'aider ?";
+            } else if (userMessage.includes("ton nom")) {
+                return "Je suis Fish au chocolat, ton assistant !";
+            } else if (userMessage.includes("qui es-tu")) {
+                return "Je suis un chatbot créé pour t'aider sur ce site.";
+            } else if (userMessage.includes("comment ça va")) {
+                return "Ça va bien, merci ! Et toi ?";
+            } else if (userMessage.includes("aide") || userMessage.includes("comment")) {
+                return "Je peux t'aider avec des informations sur ce site ou d'autres questions, n'hésite pas à demander.";
             } else {
+                return "Désolé, je ne comprends pas ta question. Peux-tu reformuler ?";
+            }
+        }
+
+        // Fonction pour ajouter un message dans le chat
+        function addMessage(message, sender) {
+            let messageElement = document.createElement('div');
+            messageElement.classList.add('message');
+            if (sender === 'bot') {
                 messageElement.classList.add('bot-message');
+            } else {
+                messageElement.classList.add('user-message');
             }
             messageElement.textContent = message;
             document.getElementById('chatbot-messages').appendChild(messageElement);
             document.getElementById('chatbot-messages').scrollTop = document.getElementById('chatbot-messages').scrollHeight;
         }
     </script>
+
 </body>
 </html>
