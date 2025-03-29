@@ -390,7 +390,8 @@
         <div class="post">
             <h2>Je suis un jeune développeur</h2>
             <p>Je fais partie de l'équipe <a href="https://linux-scratcher.fr" target="_blank">linux-scratcher.fr</a>.</p>
-            <p>Bientôt un réseau social par RPI</p> <!-- Nouvelle phrase ajoutée -->
+            <p>Bientôt un réseau social par RPI</p>
+            <p>Je suis en train de programmer mon Raspberry Pi 0W</p> <!-- Nouvelle phrase ajoutée -->
         </div>
     </div>
 
@@ -437,47 +438,6 @@
         visitCount++;
         localStorage.setItem('visitCount', visitCount);
         document.getElementById('visitCount').textContent = visitCount;
-
-        // Envoi du message du chatbot
-        function sendMessage() {
-            let userMessage = document.getElementById('userInput').value;
-            if (userMessage.trim() === '') return;
-            addMessage(userMessage, 'user');
-            document.getElementById('userInput').value = '';
-
-            // Réponses basées sur les questions courantes
-            let botResponse = getBotResponse(userMessage.toLowerCase());
-
-            setTimeout(() => {
-                addMessage(botResponse, 'bot');
-            }, 1000);
-        }
-
-        // Fonction pour obtenir les réponses du chatbot
-        function getBotResponse(userMessage) {
-            if (userMessage.includes("bonjour")) {
-                return "Salut, comment puis-je t'aider ?";
-            } else if (userMessage.includes("ton nom")) {
-                return "Je suis Fish au chocolat, ton assistant !";
-            } else if (userMessage.includes("qui es-tu")) {
-                return "Je suis un chatbot créé pour t'aider sur ce site !";
-            }
-            return "Désolé, je n'ai pas compris ta question.";
-        }
-
-        // Ajouter un message au chat
-        function addMessage(message, sender) {
-            let messageElement = document.createElement('div');
-            messageElement.classList.add('message');
-            if (sender === 'bot') {
-                messageElement.classList.add('bot-message');
-            } else {
-                messageElement.classList.add('user-message');
-            }
-            messageElement.textContent = message;
-            document.getElementById('chatbot-messages').appendChild(messageElement);
-            document.getElementById('chatbot-messages').scrollTop = document.getElementById('chatbot-messages').scrollHeight;
-        }
     </script>
 </body>
 </html>
