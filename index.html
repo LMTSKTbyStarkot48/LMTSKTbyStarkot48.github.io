@@ -390,6 +390,7 @@
         <div class="post">
             <h2>Je suis un jeune développeur</h2>
             <p>Je fais partie de l'équipe <a href="https://linux-scratcher.fr" target="_blank">linux-scratcher.fr</a>.</p>
+            <p>Bientôt un réseau social par RPI</p> <!-- Nouvelle phrase ajoutée -->
         </div>
     </div>
 
@@ -459,17 +460,12 @@
             } else if (userMessage.includes("ton nom")) {
                 return "Je suis Fish au chocolat, ton assistant !";
             } else if (userMessage.includes("qui es-tu")) {
-                return "Je suis un chatbot créé pour t'aider sur ce site.";
-            } else if (userMessage.includes("comment ça va")) {
-                return "Ça va bien, merci ! Et toi ?";
-            } else if (userMessage.includes("aide") || userMessage.includes("comment")) {
-                return "Je peux t'aider avec des informations sur ce site ou d'autres questions, n'hésite pas à demander.";
-            } else {
-                return "Désolé, je ne comprends pas ta question. Peux-tu reformuler ?";
+                return "Je suis un chatbot créé pour t'aider sur ce site !";
             }
+            return "Désolé, je n'ai pas compris ta question.";
         }
 
-        // Fonction pour ajouter un message dans le chat
+        // Ajouter un message au chat
         function addMessage(message, sender) {
             let messageElement = document.createElement('div');
             messageElement.classList.add('message');
@@ -485,5 +481,3 @@
     </script>
 </body>
 </html>
-
-
