@@ -506,6 +506,31 @@
             // Choisir une réponse aléatoire parmi les options
             return responses[Math.floor(Math.random() * responses.length)];
         }
+           // Fonction de chatbot pour envoyer un message
+        function sendMessage() {
+            const userInput = document.getElementById('userInput').value;
+            const chatbotMessages = document.getElementById('chatbot-messages');
+
+            if (userInput.trim() !== '') {
+                // Ajouter le message de l'utilisateur
+                const userMessage = document.createElement('div');
+                userMessage.classList.add('message', 'user-message');
+                userMessage.textContent = userInput;
+                chatbotMessages.appendChild(userMessage);
+
+                // Effacer l'input
+                document.getElementById('userInput').value = '';
+
+                // Réponse automatique du chatbot après un court délai
+                setTimeout(() => {
+                    const botMessage = document.createElement('div');
+                    botMessage.classList.add('message', 'bot-message');
+                    botMessage.textContent = getHumanLikeResponse(userInput);
+                    chatbotMessages.appendChild(botMessage);
+                    chatbotMessages.scrollTop = chatbotMessages.scrollHeight; // Faire défiler jusqu'au bas
+                }, 1000);  // Réponse après 1 seconde
+            }
+        }
     </script>
 </body>
 </html>
