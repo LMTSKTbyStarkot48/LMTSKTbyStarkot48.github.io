@@ -253,14 +253,68 @@
             white-space: nowrap;
         }
 
-        @media (max-width: 768px) {
-            .container {
-                width: 95%;
-            }
-            header h1 {
-                font-size: 28px;
-            }
+        /* Chat */
+        .chat-container {
+            max-width: 600px;
+            margin: 30px auto;
+            background-color: #2c3e50;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
         }
+
+        .messages {
+            max-height: 400px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+            background-color: #34495e;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .message {
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #ecf0f1;
+            color: #333;
+            border-radius: 8px;
+        }
+
+        .message .author {
+            font-weight: bold;
+            color: #2980b9;
+        }
+
+        .message .text {
+            margin-top: 5px;
+        }
+
+        .input-container {
+            display: flex;
+            gap: 10px;
+        }
+
+        .input-container input {
+            width: 80%;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            font-size: 16px;
+        }
+
+        .input-container button {
+            padding: 10px 15px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .input-container button:hover {
+            background-color: #2980b9;
+        }
+
     </style>
 </head>
 <body>
@@ -311,7 +365,19 @@
             <h2>Je suis un jeune développeur</h2>
             <p>Je fais partie de l'équipe <a href="https://linux-scratcher.fr" target="_blank">linux-scratcher.fr</a>.</p>
             <p>Bientôt un réseau social par RPI</p>
-            <p>Je suis en train de programmer mon Raspberry Pi 0W</p> <!-- Nouvelle phrase ajoutée -->
+            <p>Je suis en train de programmer mon Raspberry Pi 0W</p>
+        </div>
+    </div>
+
+    <!-- Chat public -->
+    <div class="chat-container">
+        <h2>Chat public</h2>
+        <div class="messages" id="messages">
+            <!-- Messages affichés ici -->
+        </div>
+        <div class="input-container">
+            <input type="text" id="chatInput" placeholder="Écrivez un message...">
+            <button onclick="sendMessage()">Envoyer</button>
         </div>
     </div>
 
@@ -337,6 +403,18 @@
         visitCount++;
         localStorage.setItem('visitCount', visitCount);
         document.getElementById('visitCount').textContent = visitCount;
+
+        // Fonction pour envoyer un message dans le chat
+        function sendMessage() {
+            let messageText = document.getElementById('chatInput').value;
+            if (messageText) {
+                let message = document.createElement('div');
+                message.classList.add('message');
+                message.innerHTML = `<span class="author">Utilisateur:</span><div class="text">${messageText}</div>`;
+                document.getElementById('messages').appendChild(message);
+                document.getElementById('chatInput').value = '';
+            }
+        }
     </script>
 
     <footer>
