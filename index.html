@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -15,86 +14,22 @@
             background-color: #121212;
             color: #ecf0f1;
             position: relative;
+            overflow: hidden;
         }
 
-        /* Style du chatbot */
-        #chatbot {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 300px;
-            height: 400px;
-            background-color: #2c3e50;
+        /* Message de vérification Cloudflare */
+        .cf-message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-            display: flex;
-            flex-direction: column;
-        }
-
-        #chatbot-header {
-            background-color: #3498db;
-            color: white;
-            padding: 15px;
-            border-radius: 10px 10px 0 0;
+            font-size: 20px;
             text-align: center;
-            font-weight: bold;
-        }
-
-        #chatbot-messages {
-            flex-grow: 1;
-            overflow-y: auto;
-            padding: 15px;
-            color: #bdc3c7;
-            font-size: 16px;
-        }
-
-        #chatbot-input {
-            display: flex;
-            padding: 10px;
-            background-color: #ecf0f1;
-            border-radius: 0 0 10px 10px;
-        }
-
-        #chatbot-input input {
-            flex-grow: 1;
-            padding: 10px;
-            font-size: 16px;
-            border: none;
-            border-radius: 5px;
-            margin-right: 10px;
-        }
-
-        #chatbot-input button {
-            padding: 10px 15px;
-            background-color: #3498db;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        #chatbot-input button:hover {
-            background-color: #2980b9;
-        }
-
-        /* Animation d'apparition des messages */
-        .message {
-            margin-bottom: 15px;
-            padding: 10px;
-            background-color: #34495e;
-            border-radius: 5px;
-            max-width: 80%;
-            word-wrap: break-word;
-        }
-
-        .bot-message {
-            background-color: #1abc9c;
-            margin-left: auto;
-        }
-
-        .user-message {
-            background-color: #e74c3c;
-            margin-right: auto;
+            z-index: 100;
         }
 
         /* Activation du défilement fluide */
@@ -380,157 +315,33 @@
         </div>
     </div>
 
-    <div id="chatbot">
-        <div id="chatbot-header">Fish au chocolat</div>
-        <div id="chatbot-messages"></div>
-        <div id="chatbot-input">
-            <input type="text" id="userInput" placeholder="Écris quelque chose...">
-            <button onclick="sendMessage()">Envoyer</button>
-        </div>
-    </div>
-
-    <script src="https://utteranc.es/client.js"
-        repo="LMTSKTbyStarkot48/LMTSKTbyStarkot48.github.io"
-        issue-term="pathname"
-        theme="github-dark"
-        crossorigin="anonymous"
-        async>
-    </script>
-
-    <footer>
-        <p>&copy; 2025 Starkot48 - Tous droits réservés</p>
-    </footer>
-
     <script>
         // Simuler la fin de la vérification (vous pouvez remplacer cela par une vraie détection de la fin de Cloudflare)
         setTimeout(() => {
             document.getElementById('cfMessage').style.display = 'none';
         }, 5000);  // Disparaît après 5 secondes pour la démo. Ajustez selon le vrai délai de vérification.
 
-        // Fonction de chatbot
-        function sendMessage() {
-            const userInput = document.getElementById('userInput').value;
-            const chatbotMessages = document.getElementById('chatbot-messages');
-
-            if (userInput.trim() !== '') {
-                // Ajouter le message de l'utilisateur
-                const userMessage = document.createElement('div');
-                userMessage.classList.add('message', 'user-message');
-                userMessage.textContent = userInput;
-                chatbotMessages.appendChild(userMessage);
-
-                // Effacer l'input
-                document.getElementById('userInput').value = '';
-
-                // Réponse automatique du chatbot
-                setTimeout(() => {
-                    const botMessage = document.createElement('div');
-                    botMessage.classList.add('message', 'bot-message');
-                    botMessage.textContent = "Oh, tu m'as dit quelque chose ! 😊 Je suis tout ouïe ! Dis-moi encore plus !";
-                    chatbotMessages.appendChild(botMessage);
-                    chatbotMessages.scrollTop = chatbotMessages.scrollHeight; // Faire défiler jusqu'au bas
-                }, 1000);  // Réponse après 1 seconde
-            }
-        }
-
         // Chargement du compteur de likes depuis le stockage local
-        let likeCount = localStorage.getItem('likeCount') ? parseInt(localStorage.getItem('likeCount')) : 0;
+        let likeCount = parseInt(localStorage.getItem('likeCount')) || 0;
         document.getElementById('likeCount').textContent = likeCount;
 
-        // Augmenter le compteur de likes
+        // Fonction pour augmenter le nombre de likes
         function increaseLikeCount() {
             likeCount++;
             localStorage.setItem('likeCount', likeCount);
             document.getElementById('likeCount').textContent = likeCount;
         }
 
-        // Compteur de visites (stocké dans le localStorage)
-        let visitCount = localStorage.getItem('visitCount') ? parseInt(localStorage.getItem('visitCount')) : 0;
+        // Mise à jour du nombre de personnes qui se sont connectées
+        let visitCount = parseInt(localStorage.getItem('visitCount')) || 0;
         visitCount++;
         localStorage.setItem('visitCount', visitCount);
         document.getElementById('visitCount').textContent = visitCount;
     </script>
-</header>
 
-    <div id="chatbot">
-        <div id="chatbot-header">Dis-moi ce qui te tient à cœur !</div>
-        <div id="chatbot-messages"></div>
-        <div id="chatbot-input">
-            <input type="text" id="userInput" placeholder="Écris quelque chose...">
-            <button onclick="sendMessage()">Envoyer</button>
-        </div>
-    </div>
+    <footer>
+        <p>&copy; 2025 Starkot48e | <a href="#">Mentions légales</a></p>
+    </footer>
 
-    <script>
-        // Fonction de chatbot
-        function sendMessage() {
-            const userInput = document.getElementById('userInput').value;
-            const chatbotMessages = document.getElementById('chatbot-messages');
-
-            if (userInput.trim() !== '') {
-                // Ajouter le message de l'utilisateur
-                const userMessage = document.createElement('div');
-                userMessage.classList.add('message', 'user-message');
-                userMessage.textContent = userInput;
-                chatbotMessages.appendChild(userMessage);
-
-                // Effacer l'input
-                document.getElementById('userInput').value = '';
-
-                // Réponse automatique du chatbot plus empathique et humain
-                setTimeout(() => {
-                    const botMessage = document.createElement('div');
-                    botMessage.classList.add('message', 'bot-message');
-                    botMessage.textContent = getHumanLikeResponse(userInput);
-                    chatbotMessages.appendChild(botMessage);
-                    chatbotMessages.scrollTop = chatbotMessages.scrollHeight; // Faire défiler jusqu'au bas
-                }, 1000);  // Réponse après 1 seconde
-            }
-        }
-
-        // Fonction qui génère des réponses empathiques et humanitaires
-        function getHumanLikeResponse(input) {
-            const responses = [
-                "Oh, je comprends ! Merci de partager cela avec moi. 😊",
-                "C'est vraiment intéressant, tu m'as bien fait réfléchir ! 🤔",
-                "Je suis là pour t'écouter, que puis-je faire pour t'aider ? 💙",
-                "Wow, merci de m'en parler ! C'est super d'avoir une discussion avec toi. 🙏",
-                "Je sens qu'il y a beaucoup de sagesse dans tes paroles. Partage-moi encore plus ! 🌟",
-                "C'est génial d'échanger avec toi ! 😊 Dis-moi en plus si tu veux !",
-                "Tu es important pour moi, merci de partager ton histoire ! 💕",
-                "J'aime beaucoup ce que tu dis ! C'est vraiment beau. 🫶",
-                "Cela me touche profondément. Si tu veux parler plus, je suis là ! 🤗",
-                "Tu as toute mon attention, je suis là pour toi. ❤️"
-            ];
-
-            // Choisir une réponse aléatoire parmi les options
-            return responses[Math.floor(Math.random() * responses.length)];
-        }
-           // Fonction de chatbot pour envoyer un message
-        function sendMessage() {
-            const userInput = document.getElementById('userInput').value;
-            const chatbotMessages = document.getElementById('chatbot-messages');
-
-            if (userInput.trim() !== '') {
-                // Ajouter le message de l'utilisateur
-                const userMessage = document.createElement('div');
-                userMessage.classList.add('message', 'user-message');
-                userMessage.textContent = userInput;
-                chatbotMessages.appendChild(userMessage);
-
-                // Effacer l'input
-                document.getElementById('userInput').value = '';
-
-                // Réponse automatique du chatbot après un court délai
-                setTimeout(() => {
-                    const botMessage = document.createElement('div');
-                    botMessage.classList.add('message', 'bot-message');
-                    botMessage.textContent = getHumanLikeResponse(userInput);
-                    chatbotMessages.appendChild(botMessage);
-                    chatbotMessages.scrollTop = chatbotMessages.scrollHeight; // Faire défiler jusqu'au bas
-                }, 1000);  // Réponse après 1 seconde
-            }
-        }
-    </script>
 </body>
 </html>
