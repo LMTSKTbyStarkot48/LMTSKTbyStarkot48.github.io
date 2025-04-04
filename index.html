@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -94,21 +95,6 @@
         .user-message {
             background-color: #e74c3c;
             margin-right: auto;
-        }
-
-        /* Message de vérification Cloudflare */
-        .cf-message {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: rgba(0, 0, 0, 0.8);
-            color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            font-size: 20px;
-            text-align: center;
-            z-index: 100;
         }
 
         /* Activation du défilement fluide */
@@ -421,6 +407,32 @@
             document.getElementById('cfMessage').style.display = 'none';
         }, 5000);  // Disparaît après 5 secondes pour la démo. Ajustez selon le vrai délai de vérification.
 
+        // Fonction de chatbot
+        function sendMessage() {
+            const userInput = document.getElementById('userInput').value;
+            const chatbotMessages = document.getElementById('chatbot-messages');
+
+            if (userInput.trim() !== '') {
+                // Ajouter le message de l'utilisateur
+                const userMessage = document.createElement('div');
+                userMessage.classList.add('message', 'user-message');
+                userMessage.textContent = userInput;
+                chatbotMessages.appendChild(userMessage);
+
+                // Effacer l'input
+                document.getElementById('userInput').value = '';
+
+                // Réponse automatique du chatbot
+                setTimeout(() => {
+                    const botMessage = document.createElement('div');
+                    botMessage.classList.add('message', 'bot-message');
+                    botMessage.textContent = "Oh, tu m'as dit quelque chose ! 😊 Je suis tout ouïe ! Dis-moi encore plus !";
+                    chatbotMessages.appendChild(botMessage);
+                    chatbotMessages.scrollTop = chatbotMessages.scrollHeight; // Faire défiler jusqu'au bas
+                }, 1000);  // Réponse après 1 seconde
+            }
+        }
+
         // Chargement du compteur de likes depuis le stockage local
         let likeCount = localStorage.getItem('likeCount') ? parseInt(localStorage.getItem('likeCount')) : 0;
         document.getElementById('likeCount').textContent = likeCount;
@@ -440,4 +452,3 @@
     </script>
 </body>
 </html>
-
