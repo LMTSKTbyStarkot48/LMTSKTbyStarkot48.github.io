@@ -331,18 +331,6 @@
     <div class="led-strip left"></div>
     <div class="led-strip right"></div>
 
-    <!-- Emojis "Caca" qui tombent du haut vers le bas -->
-    <div class="emoji" style="left: 10%; top: -50px;">💩</div>
-    <div class="emoji" style="left: 20%; top: -100px;">💩</div>
-    <div class="emoji" style="left: 30%; top: -150px;">💩</div>
-    <div class="emoji" style="left: 40%; top: -200px;">💩</div>
-    <div class="emoji" style="left: 50%; top: -250px;">💩</div>
-    <div class="emoji" style="left: 60%; top: -300px;">💩</div>
-    <div class="emoji" style="left: 70%; top: -350px;">💩</div>
-    <div class="emoji" style="left: 80%; top: -400px;">💩</div>
-    <div class="emoji" style="left: 90%; top: -450px;">💩</div>
-    <div class="emoji" style="left: 100%; top: -500px;">💩</div>
-
     <header>
         <img src="OIP.jpg" alt="Photo de profil" class="profile-pic">
         <h1>Bienvenue sur mon blog</h1>
@@ -381,6 +369,16 @@
         </div>
     </div>
 
+    <!-- Section des commentaires -->
+    <div class="comment-section">
+        <h2>Commentaires</h2>
+        <textarea id="newComment" placeholder="Écrivez un commentaire..."></textarea>
+        <button onclick="submitComment()">Soumettre</button>
+        <div id="commentsList">
+            <!-- Les commentaires seront affichés ici -->
+        </div>
+    </div>
+
     <script>
         // Simuler la fin de la vérification (vous pouvez remplacer cela par une vraie détection de la fin de Cloudflare)
         setTimeout(() => {
@@ -413,6 +411,18 @@
                 message.innerHTML = `<span class="author">Utilisateur:</span><div class="text">${messageText}</div>`;
                 document.getElementById('messages').appendChild(message);
                 document.getElementById('chatInput').value = '';
+            }
+        }
+
+        // Fonction pour ajouter un commentaire
+        function submitComment() {
+            let newCommentText = document.getElementById('newComment').value;
+            if (newCommentText) {
+                let commentDiv = document.createElement('div');
+                commentDiv.classList.add('comment-utterance');
+                commentDiv.textContent = newCommentText;
+                document.getElementById('commentsList').appendChild(commentDiv);
+                document.getElementById('newComment').value = ''; // Clear the textarea after submission
             }
         }
     </script>
