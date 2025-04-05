@@ -46,14 +46,14 @@
             z-index: 10;
         }
 
-        /* Bande LED rétrécie sur chaque côté */
+        /* Bande LED agrandie sur chaque côté */
         .led-strip.top, .led-strip.bottom {
-            height: 10px;  /* Bande LED réduite */
+            height: 20px;  /* Bande LED plus large */
             width: 100%;
         }
 
         .led-strip.left, .led-strip.right {
-            width: 10px;  /* Bande LED réduite */
+            width: 20px;  /* Bande LED plus large */
             height: 100%;
         }
 
@@ -333,7 +333,7 @@
 
     <header>
         <img src="OIP.jpg" alt="Photo de profil" class="profile-pic">
-        <h1>Bienvenue sur mon site</h1>
+        <h1>Bienvenue sur mon blog</h1>
 
         <!-- Affichage du nombre de personnes qui se sont connectées -->
         <div style="display: flex; align-items: center; margin-top: 10px;">
@@ -341,9 +341,9 @@
             <span>Personnes se sont déjà connectées</span>
         </div>
 
-        <!-- Bouton "Pousse bleu" et compteur -->
+        <!-- Bouton "Pousse bleu" avec émoji -->
         <div style="display: flex; align-items: center; margin-top: 10px;">
-            <button class="like-button" onclick="increaseLikeCount()">Pousse bleu</button>
+            <button class="like-button" onclick="increaseLikeCount()">👍</button>
             <span class="like-count" id="likeCount">0</span>
         </div>
     </header>
@@ -433,3 +433,4 @@
 
 </body>
 </html>
+
