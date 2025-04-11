@@ -1,431 +1,260 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/vnd.icon" href="OIP.jpg">
-    <title>Starkot48</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #121212;
-            color: #ecf0f1;
-            position: relative;
-            overflow: hidden;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="icon" type="image/png" href="OIP.jpg"/>
+  <title>Starkot48 - Développeur</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background-color: #181818;
+      color: #f1f1f1;
+    }
 
-        /* Message de vérification Cloudflare */
-        .cf-message {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: rgba(0, 0, 0, 0.8);
-            color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            font-size: 20px;
-            text-align: center;
-            z-index: 100;
-        }
+    header {
+      background-color: #202020;
+      padding: 40px 20px;
+      text-align: center;
+    }
 
-        /* Activation du défilement fluide */
-        html {
-            scroll-behavior: smooth;
-        }
+    .profile-pic {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #3498db;
+      margin-bottom: 20px;
+    }
 
-        /* Bande LED multicolore animée autour de la page */
-        .led-strip {
-            position: absolute;
-            background: linear-gradient(90deg, red, yellow, green, cyan, blue, magenta, red);
-            background-size: 300% 100%;
-            animation: led-animation 5s linear infinite;
-            z-index: 10;
-        }
+    header h1 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
 
-        /* Bande LED agrandie sur chaque côté */
-        .led-strip.top, .led-strip.bottom {
-            height: 20px;  /* Bande LED plus large */
-            width: 100%;
-        }
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 15px;
+      font-size: 16px;
+      color: #bbb;
+    }
 
-        .led-strip.left, .led-strip.right {
-            width: 20px;  /* Bande LED plus large */
-            height: 100%;
-        }
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
 
-        .led-strip.top { top: 0; }
-        .led-strip.bottom { bottom: 0; }
-        .led-strip.left { left: 0; }
-        .led-strip.right { right: 0; }
+    .post {
+      background-color: #252525;
+      padding: 25px;
+      border-radius: 8px;
+      margin-bottom: 40px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
 
-        /* Animation de défilement des couleurs */
-        @keyframes led-animation {
-            0% { background-position: 0 0; }
-            100% { background-position: -300% 0; }
-        }
+    .post h2 {
+      font-size: 24px;
+      margin-bottom: 15px;
+    }
 
-        /* Animation des emojis "caca" */
-        @keyframes emoji-fall {
-            0% { transform: translateY(-100px); opacity: 1; }
-            100% { transform: translateY(100vh); opacity: 0; }
-        }
+    .post p {
+      color: #ccc;
+      line-height: 1.7;
+    }
 
-        .emoji {
-            font-size: 30px;
-            position: absolute;
-            top: -50px;
-            animation: emoji-fall 2s linear infinite;
-        }
+    a {
+      color: #3498db;
+    }
 
-        /* Styles généraux pour le reste de la page */
-        header {
-            background-color: #1a2327;
-            color: #ecf0f1;
-            padding: 20px;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-        }
+    a:hover {
+      text-decoration: underline;
+    }
 
-        header h1 {
-            margin: 0;
-            font-size: 36px;
-            font-weight: 600;
-        }
+    .like-button {
+      margin-top: 20px;
+      background-color: #3498db;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
 
-        .profile-pic {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            border: 3px solid #fff;
-            object-fit: cover;
-            margin-bottom: 15px;
-        }
+    .like-button:hover {
+      background-color: #2980b9;
+    }
 
-        .like-button {
-            background-color: #3498db;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            display: inline-block;
-            margin-left: 20px;
-        }
+    .chat-container,
+    .comment-section {
+      background-color: #252525;
+      padding: 25px;
+      border-radius: 8px;
+      margin-bottom: 40px;
+    }
 
-        .like-button:hover {
-            background-color: #2980b9;
-        }
+    .chat-container h2,
+    .comment-section h2 {
+      margin-bottom: 15px;
+      font-size: 22px;
+    }
 
-        .like-count {
-            color: #ecf0f1;
-            font-size: 18px;
-            font-weight: bold;
-        }
+    .messages {
+      background-color: #1f1f1f;
+      padding: 15px;
+      border-radius: 6px;
+      max-height: 250px;
+      overflow-y: auto;
+      margin-bottom: 20px;
+    }
 
-        .visit-count {
-            color: #ecf0f1;
-            font-size: 18px;
-            font-weight: bold;
-            margin-left: 10px;
-        }
+    .message {
+      background-color: #eee;
+      color: #333;
+      border-radius: 6px;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
 
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 30px auto;
-            padding: 0 15px;
-            overflow: hidden;
-        }
+    .message .author {
+      font-weight: bold;
+      color: #2980b9;
+    }
 
-        .post {
-            background: #2c3e50;
-            margin: 20px 0;
-            padding: 25px;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            transition: all 0.3s ease;
-        }
+    .input-container {
+      display: flex;
+      gap: 10px;
+    }
 
-        .post:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-        }
+    .input-container input,
+    .comment-section textarea {
+      flex: 1;
+      padding: 10px;
+      font-size: 15px;
+      border-radius: 6px;
+      border: none;
+    }
 
-        .post h2 {
-            font-size: 28px;
-            color: #ecf0f1;
-        }
+    .comment-section textarea {
+      height: 100px;
+      resize: vertical;
+      margin-bottom: 15px;
+    }
 
-        .post p {
-            line-height: 1.8;
-            color: #bdc3c7;
-        }
+    .input-container button,
+    .comment-section button {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
 
-        footer {
-            background-color: #1a2327;
-            color: #ecf0f1;
-            text-align: center;
-            padding: 15px 0;
-            position: relative;
-            bottom: 0;
-            width: 100%;
-            font-size: 14px;
-        }
+    .input-container button:hover,
+    .comment-section button:hover {
+      background-color: #2980b9;
+    }
 
-        a {
-            color: #3498db;
-            text-decoration: none;
-        }
+    .comment-utterance {
+      background-color: #eee;
+      color: #333;
+      border-radius: 6px;
+      padding: 10px;
+      margin-top: 10px;
+    }
 
-        a:hover {
-            text-decoration: underline;
-        }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #202020;
+      color: #aaa;
+      font-size: 14px;
+    }
 
-        /* Section des commentaires */
-        .comment-section {
-            background-color: #ffffff;
-            color: #333333;
-            padding: 40px;
-            margin-top: 40px;
-            border-radius: 8px;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        .comment-section h2 {
-            font-size: 28px;
-            margin-bottom: 20px;
-        }
-
-        .comment-section textarea {
-            width: 100%;
-            height: 150px;
-            padding: 15px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            resize: vertical;
-            background-color: #f5f5f5;
-        }
-
-        .comment-section button {
-            padding: 10px 20px;
-            background-color: #3498db;
-            color: #fff;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        .comment-section button:hover {
-            background-color: #2980b9;
-        }
-
-        .comment-utterance {
-            margin-top: 20px;
-            padding: 15px;
-            background-color: #ecf0f1;
-            color: #333333;
-            border-radius: 8px;
-            font-size: 16px;
-        }
-
-        .angled-text {
-            position: absolute;
-            top: 180px;
-            left: 20px;
-            font-size: 18px;
-            font-weight: 600;
-            color: #ecf0f1;
-            transform: rotate(-45deg);
-            transform-origin: left top;
-            white-space: nowrap;
-        }
-
-        /* Chat */
-        .chat-container {
-            max-width: 600px;
-            margin: 30px auto;
-            background-color: #2c3e50;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        .messages {
-            max-height: 400px;
-            overflow-y: auto;
-            margin-bottom: 20px;
-            background-color: #34495e;
-            padding: 10px;
-            border-radius: 8px;
-        }
-
-        .message {
-            padding: 10px;
-            margin-bottom: 10px;
-            background-color: #ecf0f1;
-            color: #333;
-            border-radius: 8px;
-        }
-
-        .message .author {
-            font-weight: bold;
-            color: #2980b9;
-        }
-
-        .message .text {
-            margin-top: 5px;
-        }
-
-        .input-container {
-            display: flex;
-            gap: 10px;
-        }
-
-        .input-container input {
-            width: 80%;
-            padding: 10px;
-            border-radius: 5px;
-            border: none;
-            font-size: 16px;
-        }
-
-        .input-container button {
-            padding: 10px 15px;
-            background-color: #3498db;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .input-container button:hover {
-            background-color: #2980b9;
-        }
-
-    </style>
+  </style>
 </head>
 <body>
 
-    <!-- Message de vérification Cloudflare -->
-    <div class="cf-message" id="cfMessage">
-        <p>Vérification en cours...</p>
-        <p>Patientez pendant que nous vérifions votre accès.</p>
+  <header>
+    <img src="OIP.jpg" alt="Photo de profil" class="profile-pic" />
+    <h1>Starkot48</h1>
+    <p>Jeune développeur passionné par Linux, Raspberry Pi, et le web.</p>
+    <div class="stats">
+      <span id="visitCount">0 visiteurs</span>
+      <span id="likeCount">0 👍</span>
+    </div>
+    <button class="like-button" onclick="increaseLikeCount()">Aimer</button>
+  </header>
+
+  <main class="container">
+    <div class="post">
+      <h2>Mon parcours</h2>
+      <p>Je fais partie de l'équipe <a href="https://linux-scratcher.fr" target="_blank">linux-scratcher.fr</a>. Je travaille actuellement sur un projet de réseau social utilisant un Raspberry Pi 0W.</p>
     </div>
 
-  
-    <header>
-        <img src="OIP.jpg" alt="Photo de profil" class="profile-pic">
-        <h1>BIENVENUE SUR LE SITE DE STARKOT48</h1>
-
-        <!-- Affichage du nombre de personnes qui se sont connectées -->
-        <div style="display: flex; align-items: center; margin-top: 10px;">
-            <span class="visit-count" id="visitCount">0</span>
-            <span>Personnes se sont déjà connectées</span>
-        </div>
-
-        <!-- Bouton "Pousse bleu" avec émoji -->
-        <div style="display: flex; align-items: center; margin-top: 10px;">
-            <button class="like-button" onclick="increaseLikeCount()">👍</button>
-            <span class="like-count" id="likeCount">0</span>
-        </div>
-    </header>
-
-    <div class="container">
-        <div class="post">
-            <h2>Je suis un jeune développeur</h2>
-            <p>Je fais partie de l'équipe <a href="https://linux-scratcher.fr" target="_blank">linux-scratcher.fr</a>.</p>
-            <p>Bientôt un réseau social par RPI</p>
-            <p>Je suis en train de programmer mon Raspberry Pi 0W</p>
-        </div>
-    </div>
-
-    <!-- Chat public -->
     <div class="chat-container">
-        <h2>Chat public</h2>
-        <div class="messages" id="messages">
-            <!-- Messages affichés ici -->
-        </div>
-        <div class="input-container">
-            <input type="text" id="chatInput" placeholder="Écrivez un message...">
-            <button onclick="sendMessage()">Envoyer</button>
-        </div>
+      <h2>Chat public</h2>
+      <div class="messages" id="messages"></div>
+      <div class="input-container">
+        <input type="text" id="chatInput" placeholder="Votre message..." />
+        <button onclick="sendMessage()">Envoyer</button>
+      </div>
     </div>
 
-    <!-- Section des commentaires -->
     <div class="comment-section">
-        <h2>Commentaires</h2>
-        <textarea id="newComment" placeholder="Écrivez un commentaire..."></textarea>
-        <button onclick="submitComment()">Soumettre</button>
-        <div id="commentsList">
-            <!-- Les commentaires seront affichés ici -->
-        </div>
+      <h2>Commentaires</h2>
+      <textarea id="newComment" placeholder="Écrivez un commentaire..."></textarea>
+      <button onclick="submitComment()">Soumettre</button>
+      <div id="commentsList"></div>
     </div>
+  </main>
 
-    <script>
-        // Simuler la fin de la vérification (vous pouvez remplacer cela par une vraie détection de la fin de Cloudflare)
-        setTimeout(() => {
-            document.getElementById('cfMessage').style.display = 'none';
-        }, 5000);  // Disparaît après 5 secondes pour la démo. Ajustez selon le vrai délai de vérification.
+  <footer>
+    &copy; 2025 Starkot48 — Tous droits réservés | <a href="#">Mentions légales</a>
+  </footer>
 
-        // Chargement du compteur de likes depuis le stockage local
-        let likeCount = parseInt(localStorage.getItem('likeCount')) || 0;
-        document.getElementById('likeCount').textContent = likeCount;
+  <script>
+    let likeCount = parseInt(localStorage.getItem('likeCount')) || 0;
+    document.getElementById('likeCount').textContent = `${likeCount} 👍`;
 
-        // Fonction pour augmenter le nombre de likes
-        function increaseLikeCount() {
-            likeCount++;
-            localStorage.setItem('likeCount', likeCount);
-            document.getElementById('likeCount').textContent = likeCount;
-        }
+    function increaseLikeCount() {
+      likeCount++;
+      localStorage.setItem('likeCount', likeCount);
+      document.getElementById('likeCount').textContent = `${likeCount} 👍`;
+    }
 
-        // Mise à jour du nombre de personnes qui se sont connectées
-        let visitCount = parseInt(localStorage.getItem('visitCount')) || 0;
-        visitCount++;
-        localStorage.setItem('visitCount', visitCount);
-        document.getElementById('visitCount').textContent = visitCount;
+    let visitCount = parseInt(localStorage.getItem('visitCount')) || 0;
+    visitCount++;
+    localStorage.setItem('visitCount', visitCount);
+    document.getElementById('visitCount').textContent = `${visitCount} visiteurs`;
 
-        // Fonction pour envoyer un message dans le chat
-        function sendMessage() {
-            let messageText = document.getElementById('chatInput').value;
-            if (messageText) {
-                let message = document.createElement('div');
-                message.classList.add('message');
-                message.innerHTML = `<span class="author">Utilisateur:</span><div class="text">${messageText}</div>`;
-                document.getElementById('messages').appendChild(message);
-                document.getElementById('chatInput').value = '';
-            }
-        }
+    function sendMessage() {
+      let text = document.getElementById('chatInput').value;
+      if (text.trim() !== '') {
+        let msg = document.createElement('div');
+        msg.classList.add('message');
+        msg.innerHTML = `<span class="author">Utilisateur :</span> <div class="text">${text}</div>`;
+        document.getElementById('messages').appendChild(msg);
+        document.getElementById('chatInput').value = '';
+      }
+    }
 
-        // Fonction pour ajouter un commentaire
-        function submitComment() {
-            let newCommentText = document.getElementById('newComment').value;
-            if (newCommentText) {
-                let commentDiv = document.createElement('div');
-                commentDiv.classList.add('comment-utterance');
-                commentDiv.textContent = newCommentText;
-                document.getElementById('commentsList').appendChild(commentDiv);
-                document.getElementById('newComment').value = ''; // Clear the textarea after submission
-            }
-        }
-    </script>
-
-    <footer>
-        <p>&copy; 2025 Starkot48e | <a href="#">Mentions légales</a></p>
-    </footer>
-
+    function submitComment() {
+      let commentText = document.getElementById('newComment').value;
+      if (commentText.trim() !== '') {
+        let commentDiv = document.createElement('div');
+        commentDiv.classList.add('comment-utterance');
+        commentDiv.textContent = commentText;
+        document.getElementById('commentsList').appendChild(commentDiv);
+        document.getElementById('newComment').value = '';
+      }
+    }
+  </script>
 </body>
 </html>
-
