@@ -14,22 +14,26 @@
       color: #fff;
     }
 
-    /* Barre de chargement Instagram/Cloudflare */
+    /* Barre de chargement LED style Instagram/Cloudflare */
     #loading-bar {
       position: fixed;
       top: 0;
       left: 0;
       height: 4px;
-      width: 0;
-      background: linear-gradient(90deg, #00acee, #0077b6);
+      width: 100%;
+      background: linear-gradient(90deg, rgba(0,172,238,0) 0%, rgba(0,172,238,0.8) 50%, rgba(0,172,238,0) 100%);
+      background-size: 200% auto;
+      animation: led-move 1.5s linear infinite;
       z-index: 9999;
-      transition: width 0.3s ease;
-      animation: loading 3s linear forwards;
     }
 
-    @keyframes loading {
-      0% { width: 0%; }
-      100% { width: 100%; }
+    @keyframes led-move {
+      0% {
+        background-position: -100% 0;
+      }
+      100% {
+        background-position: 100% 0;
+      }
     }
 
     #loading-screen {
@@ -237,7 +241,7 @@
 </head>
 <body>
 
-  <!-- Barre de chargement Instagram/Cloudflare -->
+  <!-- Écran de chargement LED -->
   <div id="loading-screen">
     <div id="loading-bar"></div>
     <p>Vérification de sécurité...</p>
@@ -330,7 +334,6 @@
       }
     }
 
-    // Barre de chargement façon Instagram/Cloudflare
     window.addEventListener('load', () => {
       setTimeout(() => {
         const loader = document.getElementById('loading-screen');
