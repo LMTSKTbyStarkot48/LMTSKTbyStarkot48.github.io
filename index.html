@@ -7,6 +7,7 @@
   <link rel="icon" type="image/png" href="OIP.jpg"/>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"/>
   <style>
+    /* Base layout and global styles */
     body {
       font-family: 'Poppins', sans-serif;
       margin: 0;
@@ -14,7 +15,7 @@
       color: #fff;
     }
 
-    /* Barre de chargement LED multicolore */
+    /* LED-style animated loading bar */
     #loading-bar {
       position: fixed;
       top: 0;
@@ -35,14 +36,11 @@
     }
 
     @keyframes led-move {
-      0% {
-        background-position: -100% 0;
-      }
-      100% {
-        background-position: 100% 0;
-      }
+      0% { background-position: -100% 0; }
+      100% { background-position: 100% 0; }
     }
 
+    /* Fullscreen loader background */
     #loading-screen {
       position: fixed;
       top: 0;
@@ -61,6 +59,7 @@
       transition: opacity 0.5s ease;
     }
 
+    /* Header section: profile picture, name, stats */
     header {
       padding: 40px 20px;
       text-align: center;
@@ -124,6 +123,7 @@
       padding: 0 20px;
     }
 
+    /* Posts grid layout */
     .gallery {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -162,6 +162,7 @@
       color: #00acee;
     }
 
+    /* Chat and comment sections styling */
     .chat-container,
     .comment-section {
       background-color: #111;
@@ -237,6 +238,7 @@
       margin-top: 10px;
     }
 
+    /* Footer */
     footer {
       text-align: center;
       padding: 20px;
@@ -248,12 +250,13 @@
 </head>
 <body>
 
-  <!-- Écran de chargement LED -->
+  <!-- Loading screen displayed before content loads -->
   <div id="loading-screen">
     <div id="loading-bar"></div>
     <p>Vérification pour vois si t'es un bon</p>
   </div>
 
+  <!-- User profile and header info -->
   <header>
     <img src="OIP.jpg" alt="Photo de profil" class="profile-pic" />
     <h1>Starkot48</h1>
@@ -266,6 +269,7 @@
   </header>
 
   <main>
+    <!-- User posts / updates -->
     <div class="gallery">
       <div class="post">
         <div class="post-content">
@@ -283,7 +287,7 @@
         </div>
       </div>
 
-      <!-- ✅ Nouvelle zone ajoutée ici -->
+      <!-- 📌 Linux-Scratcher project announcement -->
       <div class="post">
         <div class="post-content">
           <h2>Actus Linux-Scratcher</h2>
@@ -292,6 +296,7 @@
       </div>
     </div>
 
+    <!-- Public chat widget -->
     <div class="chat-container">
       <h2>💬 Chat public</h2>
       <div class="messages" id="messages"></div>
@@ -301,6 +306,7 @@
       </div>
     </div>
 
+    <!-- Comment system -->
     <div class="comment-section">
       <h2>📝 Commentaires</h2>
       <textarea id="newComment" placeholder="Écrivez un commentaire..."></textarea>
@@ -309,11 +315,13 @@
     </div>
   </main>
 
+  <!-- Page footer -->
   <footer>
     &copy; 2025 Starkot48 — Tous droits réservés | <a href="#">Mentions légales</a>
   </footer>
 
   <script>
+    // Load like count from localStorage
     let likeCount = parseInt(localStorage.getItem('likeCount')) || 0;
     document.getElementById('likeCount').textContent = likeCount;
 
@@ -323,11 +331,13 @@
       document.getElementById('likeCount').textContent = likeCount;
     }
 
+    // Visit counter
     let visitCount = parseInt(localStorage.getItem('visitCount')) || 0;
     visitCount++;
     localStorage.setItem('visitCount', visitCount);
     document.getElementById('visitCount').textContent = visitCount;
 
+    // Add message to chat
     function sendMessage() {
       let text = document.getElementById('chatInput').value;
       if (text.trim() !== '') {
@@ -339,6 +349,7 @@
       }
     }
 
+    // Submit user comment
     function submitComment() {
       let commentText = document.getElementById('newComment').value;
       if (commentText.trim() !== '') {
@@ -350,6 +361,7 @@
       }
     }
 
+    // Hide loading screen after delay
     window.addEventListener('load', () => {
       setTimeout(() => {
         const loader = document.getElementById('loading-screen');
