@@ -274,141 +274,14 @@
     <p>Vérification pour vois si t'es un bon</p>
   </div>
 
-  <header>
-    <img src="OIP.jpg" alt="Photo de profil" class="profile-pic" />
-    <h1>Starkot48</h1>
-    <p class="bio">Développeur passionné • Linux-scratcher • Raspberry Pi 0w • Web • Social team • Insta : LMTs.48</p>
-    <div class="stats">
-      <span><strong id="visitCount">0</strong> visites</span>
-      <span><strong id="likeCount">0</strong> likes</span>
-    </div>
-    <button class="like-button" onclick="increaseLikeCount()">👍 Aimer</button>
-  </header>
-
-  <main>
-    <div class="gallery">
-      <div class="post">
-        <div class="post-content">
-          <h2>Moi</h2>
-          <p>Je fais partie de l'équipe <a href="https://linux-scratcher.fr" target="_blank">linux-scratcher.fr</a>.</p>
-          <p>Je suis à la tête d'un réseaux social nommé Pynia lié au social team programmé avec un Raberry Pi 0w.</p>
-        </div>
-      </div>
-
-      <div class="post">
-        <div class="post-content">
-          <h2>Actus</h2>
-          <p>Programmation en cours de mon Raspberry Pi 0w !</p>
-          <p>Création de mon réseaux social Pynia bientôt disponible !</p>
-        </div>
-      </div>
-
-      <div class="post">
-        <div class="post-content">
-          <h2>Actus Linux-Scratcher</h2>
-          <p>Bientôt le pacte des anneaux</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="chat-container">
-      <h2>💬 Chat public</h2>
-      <div class="messages" id="messages"></div>
-      <div class="input-container">
-        <input type="text" id="chatInput" placeholder="Votre message..." />
-        <button onclick="sendMessage()">Envoyer</button>
-      </div>
-    </div>
-
-    <div class="chat-container">
-      <h2 style="font-size: 28px; margin-bottom: 20px;">Bientôt🙂</h2>
-      <div style="display: flex; justify-content: center;">
-        <a href="#" style="
-          background-color: #444;
-          color: #eee;
-          padding: 25px 60px;
-          font-size: 28px;
-          border-radius: 12px;
-          text-decoration: none;
-          font-weight: bold;
-          box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
-          transition: background-color 0.3s, transform 0.2s;
-        " onmouseover="this.style.backgroundColor='#666'; this.style.transform='scale(1.05)'" onmouseout="this.style.backgroundColor='#444'; this.style.transform='scale(1)'">
-          🌀 Pynia
-        </a>
-      </div>
-    </div>
-
-    <div class="chat-container">
-      <h2>🤝 En partenariat avec :</h2>
-      <div class="partner-buttons">
-        <a href="https://linux-scratcher.fr/" target="_blank" class="partner-button">🐧 Linux-Scratcher</a>
-        <a href="https://guns.lol/loutre_aquatique" target="_blank" class="partner-button">🦦 Loutre Aquatique</a>
-        <a href="https://test.linux-scratcher.fr/" target="_blank" class="partner-button">🎮 Néant85</a>
-        <a href="https://socialteams.linux-scratcher.fr/" target="_blank" class="partner-button">🪢 Social Team</a>
-      </div>
-    </div>
-
-    <div class="chat-container">
-      <h2>🌐 Notre réseaux social principal :</h2>
-      <div style="display: flex; justify-content: center; margin-top: 20px;">
-        <a href="https://nyapi.fr/" target="_blank" style="
-          background-color: #555;
-          color: white;
-          padding: 20px 40px;
-          font-size: 24px;
-          border-radius: 12px;
-          text-decoration: none;
-          font-weight: bold;
-          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-          transition: background-color 0.3s, transform 0.2s;
-        " onmouseover="this.style.backgroundColor='#777'; this.style.transform='scale(1.05)'" onmouseout="this.style.backgroundColor='#555'; this.style.transform='scale(1)'">
-          🐾 Nyapi
-        </a>
-      </div>
-    </div>
-  </main>
-
-  <footer>
-    &copy; 2025 Starkot48 — Tous droits réservés | <a href="#">Mentions légales</a>
-  </footer>
-
   <script>
-    let likeCount = parseInt(localStorage.getItem('likeCount')) || 0;
-    document.getElementById('likeCount').textContent = likeCount;
-
-    function increaseLikeCount() {
-      likeCount++;
-      localStorage.setItem('likeCount', likeCount);
-      document.getElementById('likeCount').textContent = likeCount;
-    }
-
-    let visitCount = parseInt(localStorage.getItem('visitCount')) || 0;
-    visitCount++;
-    localStorage.setItem('visitCount', visitCount);
-    document.getElementById('visitCount').textContent = visitCount;
-
-    function sendMessage() {
-      let text = document.getElementById('chatInput').value;
-      if (text.trim() !== '') {
-        let msg = document.createElement('div');
-        msg.classList.add('message');
-        msg.innerHTML = `<span class="author">Utilisateur :</span> <div class="text">${text}</div>`;
-        document.getElementById('messages').appendChild(msg);
-        document.getElementById('chatInput').value = '';
-      }
-    }
-
+    // Redirection après l'écran de chargement
     window.addEventListener('load', () => {
       setTimeout(() => {
-        const loader = document.getElementById('loading-screen');
-        loader.style.opacity = '0';
-        setTimeout(() => {
-          loader.style.display = 'none';
-        }, 500);
-      }, 3000);
+        window.location.href = "https://starkot48.linux-scratcher.fr/";
+      }, 3000); // délai de 3 secondes
     });
   </script>
+
 </body>
 </html>
-
